@@ -1,16 +1,21 @@
-package edu.gsu.bbb.willdo;
+package edu.gsu.bbb.willdo.models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import java.util.List;
 
 public class Task {
     @Id
     private String id; //Only used for PutMapping
 
+	@Indexed
+	private String groupId; //Key to linking a task to a group, should be null until instantiated
+
     private String summary;
     private String description;
-    private String date;
-    private String groupId; //Key to linking a task to a group, should be null until instantiated
+    private String date;    
     private boolean state;
+	private List<String> assignedUsers;
 
     public Task() {}
 
@@ -60,5 +65,13 @@ public class Task {
 
     public void setGroupId(String id){
         this.groupId = id;
+    }
+
+	public List<String> getAssignedUsers(){
+        return assignedUsers;
+    }
+
+	public void setAssignedUsers(List<String> assignedUsers){
+        this.assignedUsers = assignedUsers;
     }
 }

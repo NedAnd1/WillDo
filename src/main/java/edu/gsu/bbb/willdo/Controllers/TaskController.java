@@ -1,25 +1,31 @@
-package edu.gsu.bbb.willdo;
+package edu.gsu.bbb.willdo.Controllers;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
+import edu.gsu.bbb.willdo.models.Task;
+import edu.gsu.bbb.willdo.Repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.*;
 
 @RestController
 @RequestMapping("/api")
-
 public class TaskController {
     @Autowired
     TaskRepository repository;
 
-//    Obsolete because tasks are found by group now
-//    @GetMapping("/tasks") //get all tasks
-//    public List<Task> all() {
-//        return repository.findAll();
-//    }
+/*	
+	@GetMapping("/tasks") // get all of a user's tasks
+	public List<Task> all(@org.springframework.security.core.annotation.AuthenticationPrincipal User user) {
+		ArrayList<Task> allTasks= new ArrayList<Task>();
+		for ( String groupId : user.getGroups() )
+			allTasks.addAll( repository.findAllByGroupId( groupId ) );
+		return allTasks;
+	}
+*/
 
-    @GetMapping("/tasks/groups/{groupId}") //get one specific task
+    @GetMapping("/tasks/group/{groupId}") //get one specific task
     public List<Task> taskFromGroup(@PathVariable String groupId) {
         return repository.findAllByGroupId(groupId); //Uses List from TaskRepository to generate queries by GroupId
     }
@@ -35,9 +41,11 @@ public class TaskController {
         }
     }
 
-    @PostMapping("/tasks/{groupId}") //saves new task as new doc in DB
-    public Object newTaskToGroup(@RequestBody Task newTask, @PathVariable String groupId) {
-        newTask.setGroupId(groupId); //Sets the PathVariable GroupId into the new Task
+    @PostMapping("/tasks") //saves new task as new doc in DB
+    public Object newTask(@RequestBody Task newTask) {
+        if(newTask.getGroupId() == null){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Provide Group Id");
+        }
         if(newTask.getSummary() == null){
             newTask.setSummary("New Task");
         }
@@ -64,15 +72,19 @@ public class TaskController {
                         if (newTask.getGroupId() != null) {
                             task.setGroupId(newTask.getGroupId());
                         }
+                        if (newTask.getAssignedUsers() != null) {
+                            task.setAssignedUsers(newTask.getAssignedUsers());
+                        }
                         return repository.save(task);
                     });
         }
         return newTask; //sends original request body so we can see what broke it
     }
 
-    @DeleteMapping("/tasks/{taskId}")
-    public void deleteTask(@PathVariable String taskId){
-        Optional<Task> delTask = repository.findById(taskId);
-        repository.delete(delTask.get());
+	@DeleteMapping({ "/tasks/{taskId}", "/tasks/{taskId}/group/{groupId}" }) //delete task
+    public void delete(@PathVariable String taskId, @PathVariable(required=false) String groupId) {
+		if ( groupId != null )
+			repository.deleteByIdAndGroupId(taskId, groupId);
+		else repository.deleteById(taskId); 
     }
 }
