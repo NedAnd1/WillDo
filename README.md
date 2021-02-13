@@ -23,10 +23,10 @@ since Angular is often geared towards businesses and large scale projects.
 
 ## Architecture
 For communicating with the back-end,<br/>
-I created a generic, extensible (base service)[client/src/app/core/api.service.ts],<br/>
+I created a generic, extensible [base service](client/src/app/core/api.service.ts),<br/>
 and the services responsible for each API endpoint,<br/>
 only contain the logic that differentiates it from other endpoints,<br/>
-which is often only (the model and url)[client/src/app/groups/groups.service.ts].
+which is often only [the model and url](client/src/app/groups/groups.service.ts).
 
 In many Angular projects the "model" is simply an interface of basic properties,<br/>
 because returning a true OOP object with constructors and methods isn't easy,<br/>
@@ -45,8 +45,8 @@ Task manager for your group/family, push and remind them from anywhere
 
 This app aims to solve chore management within a group. Groups can be made up of friends, family, or roommates that need to manage recurring or one-off tasks. Our web application aims to provide a service that allows users to post, manage, and assign tasks with deadlines, custom notification management, and ease of use. This problem is meant to solve simple communication issues prevalent in groups with a variety of lifestyle habits.
 
-We used (Ionic)[https://ionicframework.com/] on top of Angular for the progressive web app,<br/>
+We used [Ionic](https://ionicframework.com/) on top of Angular for the progressive web app,<br/>
 Spring MVC for the server, and Mongo for the database.
 
-Execute (runall)[runall] on Unix or (runall.cmd)[runall.cmd] on Windows to build and run them all.
+Execute [runall](runall) on Unix or [runall.cmd](runall.cmd) on Windows to build and run them all.
 Prerequisites: [MongoDB Server](https://www.mongodb.com/download-center/community), [Java Development Kit](http://jdk.java.net/13/), and [Node.js](https://nodejs.org/en/download/)
