@@ -22,10 +22,8 @@ We felt this to be especially important,<br/>
 since Angular is often geared towards businesses and large scale projects.
 
 ## Architecture
-For communicating with the back-end,<br/>
-I created a generic, extensible [base service](client/src/app/core/api.service.ts),<br/>
-and the services responsible for each API endpoint,<br/>
-only contain the logic that differentiates it from other endpoints,<br/>
+For communicating with the back-end, I created a generic, extensible [base service](client/src/app/core/api.service.ts),<br/>
+and the services responsible for each API endpoint only contain the logic that differentiates it from other endpoints,<br/>
 which is often only [the model and url](client/src/app/groups/groups.service.ts).
 
 In many Angular projects the "model" is simply an interface of basic properties,<br/>
@@ -33,11 +31,11 @@ because returning a true OOP object with constructors and methods isn't easy,<br
 but the base service automatically marshals almost any model you throw at it.
 
 This allows our models to encapsulate the logic multiple components would otherwise repeat,<br/>
-and eliminates component dependencies on the server's API,<br/>
-with the same kinds of property decorators used by Spring,<br/>
-being used by the models for resolving any differences between the client and server.
+and eliminates component dependencies on the server's API.<br/>
+with support for the same kinds of property decorators used by Spring,<br/>
+[added](client/src/app/core/api.helper.ts) to our [models](client/src/app/tasks/comments/comment-class.ts) for resolving any differences between the client and server.
 
-If the client is being built at a different pace or the server is 3rd-party,<br/>
+If the client is being built at a different pace, or the server is 3rd-party,<br/>
 this design might be just what you need.
 
 ## Application
