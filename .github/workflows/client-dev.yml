@@ -5,6 +5,7 @@ name: client dev
 on:
   push:
     paths:
+      - '.github/workflows/client-dev.yml'  # detect changes to self
       - 'client/**'
     branches: [ master ]
   pull_request:
