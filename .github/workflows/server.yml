@@ -10,13 +10,13 @@ on:
       - '!client/**'  # excludes changes to the client
       - '!.github/**client**'  # exclude changes to client workflows
       - 'pom.xml'  # make sure to detect changes to the pom
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
     paths:
       - '*/**'  # matches changes that aren't top level
       - '!client/**'  # excludes changes to the client
       - 'pom.xml'  # make sure to detect changes to the pom
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:

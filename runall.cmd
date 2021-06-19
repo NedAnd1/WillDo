@@ -12,7 +12,7 @@ start /d "%~dp0" /b cmd /c mvnw.cmd spring-boot:run
 
 
 :: make sure the client is running
-cd client
+cd /d %~dp0client
 IF NOT EXIST node_modules\.bin\ng.cmd call npm install
 
 call node_modules\.bin\ng.cmd serve --open

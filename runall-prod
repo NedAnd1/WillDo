@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# make sure the database is running
+mongod &
+
+
+# make sure the production server is running (no need for client server)
+cd `dirname $0`
+./mvnw spring-boot:run -Pprod
+cd -
+
+
+read -p "Press any key to exit . . ."

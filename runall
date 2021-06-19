@@ -13,7 +13,7 @@ cd -
 # make sure the client is running
 cd `dirname $0`/client
 [ ! -f node_modules/.bin/ng ] && npm install
-./node_modules/.bin/ng serve -- open
+./node_modules/.bin/ng serve --open
 cd -
 
 read -p "Press any key to exit . . ."

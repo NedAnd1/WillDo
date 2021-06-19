@@ -7,11 +7,11 @@ on:
     paths:
       - '.github/workflows/client-dev.yml'  # detect changes to self
       - 'client/**'
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
     paths:
       - 'client/**'
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:
