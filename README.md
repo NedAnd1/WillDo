@@ -1,4 +1,4 @@
-# WillDo, Shared Tasks App
+# WillDo, Shared Tasks App [![CI](https://github.com/NedAnd1/WillDo/actions/workflows/maven.yml/badge.svg)](https://github.com/NedAnd1/WillDo/actions/workflows/maven.yml)
 Doing more while writing less with Angular and Spring MVC.
 
 ## Motivation
