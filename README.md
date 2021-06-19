@@ -1,4 +1,4 @@
-# WillDo, Shared Tasks App [![CI](https://github.com/NedAnd1/WillDo/actions/workflows/maven.yml/badge.svg)](https://github.com/NedAnd1/WillDo/actions/workflows/maven.yml)
+# WillDo, Shared Tasks App [![server build](https://github.com/NedAnd1/WillDo/actions/workflows/server.yml/badge.svg)](https://github.com/NedAnd1/WillDo/actions/workflows/server.yml) [![client dev](https://github.com/NedAnd1/WillDo/actions/workflows/client-dev.yml/badge.svg)](https://github.com/NedAnd1/WillDo/actions/workflows/client-dev.yml) [![client production](https://github.com/NedAnd1/WillDo/actions/workflows/client-prod.yml/badge.svg)](https://github.com/NedAnd1/WillDo/actions/workflows/client-prod.yml)
 Doing more while writing less with Angular and Spring MVC.
 
 ## Motivation
